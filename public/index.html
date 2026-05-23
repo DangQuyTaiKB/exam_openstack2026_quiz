@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài thi trắc nghiệm</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#f5f5f0;--surface:#ffffff;--border:#e2e0d8;--border2:#c8c6bc;
+    --text:#1a1a18;--text2:#6b6a64;--text3:#9b9a94;
+    --blue-bg:#eff6ff;--blue-border:#bfdbfe;--blue-text:#1d4ed8;
+    --green-bg:#f0fdf4;--green-border:#bbf7d0;--green-text:#15803d;
+    --red-bg:#fef2f2;--red-border:#fecaca;--red-text:#dc2626;
+    --radius:10px;--radius-sm:7px;
+  }
+  body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;color:var(--text);min-height:100vh}
+  .container{max-width:680px;margin:0 auto;padding:1.5rem 1rem}
+
+  /* Header */
+  .header{text-align:center;margin-bottom:2rem}
+  .header h1{font-size:22px;font-weight:600;margin-bottom:.25rem}
+  .header p{font-size:14px;color:var(--text2)}
+
+  /* Cards */
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1rem}
+
+  /* Inputs & Buttons */
+  input[type=text],input[type=password]{width:100%;padding:10px 14px;border:1px solid var(--border2);border-radius:var(--radius-sm);font-size:15px;color:var(--text);background:var(--surface);outline:none;transition:border .15s}
+  input[type=text]:focus,input[type=password]:focus{border-color:#6366f1}
+  .btn{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:500;cursor:pointer;border:1px solid var(--border2);background:var(--surface);color:var(--text);transition:background .12s,opacity .12s}
+  .btn:hover{background:var(--bg)}
+  .btn.primary{background:#1a1a18;color:#fff;border-color:transparent}
+  .btn.primary:hover{opacity:.85}
+  .btn.danger{border-color:#fecaca;color:var(--red-text)}
+  .btn.danger:hover{background:var(--red-bg)}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+  label.section{display:block;font-size:12px;font-weight:500;color:var(--text2);margin-bottom:.5rem;letter-spacing:.3px}
+
+  /* Timer */
+  .timer-bar{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:1.25rem}
+  .timer-digits{font-size:19px;font-weight:600;min-width:56px;font-variant-numeric:tabular-nums}
+  .timer-digits.warn{color:var(--red-text)}
+  .progress-track{flex:1;height:5px;background:var(--border);border-radius:4px;overflow:hidden}
+  .progress-fill{height:100%;background:#1a1a18;border-radius:4px;transition:width 1s linear}
+  .progress-fill.warn{background:var(--red-text)}
+  .count-tag{font-size:12px;color:var(--text2);min-width:36px;text-align:right}
+
+  /* Nav dots */
+  .q-nav{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1rem}
+  .q-dot{width:28px;height:28px;border-radius:50%;border:1px solid var(--border2);font-size:11px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);background:transparent;transition:all .12s}
+  .q-dot:hover{background:var(--bg)}
+  .q-dot.answered{background:var(--blue-bg);border-color:var(--blue-border);color:var(--blue-text)}
+  .q-dot.current{border-color:#1a1a18;color:#1a1a18;font-weight:600}
+  .q-dot.answered.current{background:var(--blue-bg);border-color:#1a1a18}
+
+  /* Question */
+  .q-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
+  .q-num{font-size:12px;color:var(--text2);font-weight:500}
+  .q-text{font-size:15px;line-height:1.65;margin-bottom:1rem;font-weight:400}
+  .opt{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:.5rem;cursor:pointer;transition:background .1s,border-color .1s}
+  .opt:hover{background:var(--bg)}
+  .opt.selected{background:var(--blue-bg);border-color:var(--blue-border)}
+  .opt input[type=radio]{width:16px;height:16px;flex-shrink:0;margin-top:2px;cursor:pointer;accent-color:#1d4ed8}
+  .opt-label{font-size:14px;line-height:1.5;color:var(--text)}
+  .opt.selected .opt-label{color:var(--blue-text)}
+  .q-footer{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .student-name-tag{font-size:12px;color:var(--text3);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  /* Results */
+  .score-wrap{text-align:center;padding:1.5rem 0}
+  .score-circle{width:110px;height:110px;border-radius:50%;border:3px solid var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 1rem}
+  .score-circle.pass{border-color:#86efac}
+  .score-circle.fail{border-color:#fca5a5}
+  .score-big{font-size:34px;font-weight:600;line-height:1}
+  .score-label{font-size:12px;color:var(--text2);margin-top:3px}
+  .badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:500;margin-top:.25rem}
+  .badge.pass{background:var(--green-bg);color:var(--green-text);border:1px solid var(--green-border)}
+  .badge.fail{background:var(--red-bg);color:var(--red-text);border:1px solid var(--red-border)}
+  .result-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;gap:1rem}
+  .result-row:last-child{border:none}
+  .result-row .q-snippet{flex:1;color:var(--text2)}
+  .result-row .r-mark{font-weight:500;flex-shrink:0}
+  .r-mark.correct{color:var(--green-text)}
+  .r-mark.wrong{color:var(--red-text)}
+
+  /* Screen control */
+  .screen{display:none}
+  .screen.active{display:block}
+
+  /* Modal */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:999;padding:1rem}
+  .modal{background:var(--surface);border-radius:var(--radius);padding:1.5rem;max-width:360px;width:100%;border:1px solid var(--border)}
+  .modal h3{font-size:16px;font-weight:600;margin-bottom:.6rem}
+  .modal p{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:1.25rem}
+  .modal-actions{display:flex;gap:8px;justify-content:flex-end}
+  #confirm-modal{display:none}
+
+  /* Error */
+  .error-msg{font-size:13px;color:var(--red-text);margin-top:.4rem;display:none}
+  .spin{display:inline-block;width:14px;height:14px;border:2px solid #fff4;border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- LOGIN -->
+<div id="screen-login" class="screen active">
+  <div class="header">
+    <h1 id="cfg-title">Bài thi trắc nghiệm</h1>
+    <p id="cfg-subtitle">Nhập họ tên để bắt đầu làm bài</p>
+  </div>
+  <div class="card">
+    <label class="section">Họ và tên đầy đủ</label>
+    <input type="text" id="name-input" placeholder="Ví dụ: Nguyễn Văn An" autocomplete="off" maxlength="80" />
+    <div id="name-error" class="error-msg">Vui lòng nhập họ tên trước khi bắt đầu.</div>
+    <div style="margin-top:.75rem;font-size:13px;color:var(--text2)">
+      ℹ️ Đáp án đúng sẽ được ẩn cho đến khi nộp bài. Không tắt trình duyệt trong khi làm bài.
+    </div>
+  </div>
+  <button class="btn primary" id="btn-start" onclick="startQuiz()">✏️ Bắt đầu làm bài</button>
+</div>
+
+<!-- QUIZ -->
+<div id="screen-quiz" class="screen">
+  <div class="timer-bar">
+    <span>⏱</span>
+    <span id="timer-digits" class="timer-digits">60:00</span>
+    <div class="progress-track"><div id="timer-fill" class="progress-fill" style="width:100%"></div></div>
+    <span id="answered-count" class="count-tag">0/5</span>
+  </div>
+  <div class="card">
+    <div class="q-header">
+      <span id="q-num-label" class="q-num">Câu 1 / 5</span>
+      <span id="session-tag" style="font-size:12px;color:var(--text3)"></span>
+    </div>
+    <div class="q-nav" id="q-nav"></div>
+    <p class="q-text" id="q-text"></p>
+    <div id="q-options"></div>
+    <div class="q-footer">
+      <button class="btn" id="btn-prev" onclick="goQ(-1)">← Trước</button>
+      <span id="student-name-tag" class="student-name-tag"></span>
+      <button class="btn" id="btn-next" onclick="goQ(1)">Tiếp →</button>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:.5rem">
+    <button class="btn danger" onclick="showConfirm()">📤 Nộp bài</button>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="screen-result" class="screen">
+  <div class="header"><h1>Kết quả bài thi</h1></div>
+  <div class="card">
+    <div class="score-wrap">
+      <div class="score-circle" id="score-circle">
+        <div class="score-big" id="score-val">0</div>
+        <div class="score-label">/ 10 điểm</div>
+      </div>
+      <div style="font-size:15px;font-weight:500;margin-bottom:.3rem" id="result-name"></div>
+      <div id="result-badge"></div>
+      <div style="font-size:13px;color:var(--text2);margin-top:.5rem" id="result-meta"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div style="font-size:14px;font-weight:500;margin-bottom:.75rem">Chi tiết câu trả lời</div>
+    <div id="result-detail"></div>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:.25rem">
+    <button class="btn primary" onclick="resetQuiz()">🔄 Thí sinh tiếp theo</button>
+  </div>
+</div>
+
+</div><!-- container -->
+
+<!-- CONFIRM MODAL -->
+<div id="confirm-modal">
+  <div class="modal-overlay" onclick="">
+    <div class="modal">
+      <h3>Xác nhận nộp bài</h3>
+      <p id="confirm-msg">Bạn có chắc muốn nộp bài không?</p>
+      <div class="modal-actions">
+        <button class="btn" onclick="hideConfirm()">Tiếp tục làm</button>
+        <button class="btn danger" id="btn-submit-confirm" onclick="submitQuiz()">📤 Nộp bài</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let cfg = {}, questions = [], ids = [], answers = [], curQ = 0;
+let timerID = null, secsLeft = 3600, totalSecs = 3600, startedAt = null;
+let studentName = "";
+
+// --- Load config & questions ---
+async function loadExam() {
+  try {
+    const res = await fetch("/api/questions");
+    const data = await res.json();
+    cfg = data.config;
+    questions = data.questions;
+    ids = data.ids;
+    totalSecs = secsLeft = cfg.duration * 60;
+    document.getElementById("cfg-title").textContent = cfg.title;
+    document.getElementById("cfg-subtitle").textContent = cfg.subtitle;
+    document.getElementById("session-tag").textContent = cfg.session;
+    document.title = cfg.title;
+  } catch(e) {
+    alert("Không thể tải đề thi. Vui lòng reload trang.");
+  }
+}
+loadExam();
+
+function startQuiz() {
+  studentName = document.getElementById("name-input").value.trim();
+  if (!studentName) {
+    document.getElementById("name-error").style.display = "block";
+    document.getElementById("name-input").focus();
+    return;
+  }
+  document.getElementById("name-error").style.display = "none";
+  answers = new Array(questions.length).fill(-1);
+  curQ = 0;
+  startedAt = new Date().toISOString();
+  buildNav(); renderQ();
+  document.getElementById("student-name-tag").textContent = studentName;
+  document.getElementById("answered-count").textContent = "0/" + questions.length;
+  goScreen("screen-quiz");
+  startTimer();
+}
+
+function startTimer() {
+  if (timerID) clearInterval(timerID);
+  timerID = setInterval(() => {
+    secsLeft--;
+    const m = Math.floor(secsLeft / 60), s = secsLeft % 60;
+    const dig = document.getElementById("timer-digits");
+    const fill = document.getElementById("timer-fill");
+    dig.textContent = (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+    fill.style.width = (secsLeft / totalSecs * 100) + "%";
+    if (secsLeft <= 300) { dig.classList.add("warn"); fill.classList.add("warn"); }
+    if (secsLeft <= 0) { clearInterval(timerID); submitQuiz(); }
+  }, 1000);
+}
+
+function buildNav() {
+  const nav = document.getElementById("q-nav");
+  nav.innerHTML = "";
+  questions.forEach((_, i) => {
+    const b = document.createElement("button");
+    b.className = "q-dot" + (i === curQ ? " current" : "") + (answers[i] >= 0 ? " answered" : "");
+    b.textContent = i + 1;
+    b.onclick = () => { curQ = i; renderQ(); };
+    nav.appendChild(b);
+  });
+}
+
+function renderQ() {
+  const q = questions[curQ];
+  document.getElementById("q-num-label").textContent = "Câu " + (curQ + 1) + " / " + questions.length;
+  document.getElementById("q-text").textContent = q.q;
+  const opts = document.getElementById("q-options");
+  opts.innerHTML = "";
+  q.opts.forEach((o, i) => {
+    const lbl = document.createElement("label");
+    lbl.className = "opt" + (answers[curQ] === i ? " selected" : "");
+    lbl.innerHTML = `<input type="radio" name="opt_${curQ}" value="${i}" ${answers[curQ] === i ? "checked" : ""}/>
+      <span class="opt-label">${String.fromCharCode(65 + i)}. ${o}</span>`;
+    lbl.querySelector("input").addEventListener("change", () => selectOpt(i));
+    opts.appendChild(lbl);
+  });
+  buildNav();
+  document.getElementById("btn-prev").disabled = curQ === 0;
+  document.getElementById("btn-next").disabled = curQ === questions.length - 1;
+}
+
+function selectOpt(i) {
+  answers[curQ] = i;
+  const count = answers.filter(a => a >= 0).length;
+  document.getElementById("answered-count").textContent = count + "/" + questions.length;
+  renderQ();
+}
+
+function goQ(dir) {
+  const n = curQ + dir;
+  if (n >= 0 && n < questions.length) { curQ = n; renderQ(); }
+}
+
+function showConfirm() {
+  const unanswered = answers.filter(a => a < 0).length;
+  document.getElementById("confirm-msg").textContent = unanswered > 0
+    ? `Bạn còn ${unanswered} câu chưa trả lời. Bạn có chắc muốn nộp bài không?`
+    : "Bạn đã trả lời tất cả các câu. Xác nhận nộp bài?";
+  document.getElementById("confirm-modal").style.display = "block";
+}
+function hideConfirm() { document.getElementById("confirm-modal").style.display = "none"; }
+
+async function submitQuiz() {
+  hideConfirm();
+  clearInterval(timerID);
+  const btn = document.getElementById("btn-submit-confirm");
+  if (btn) btn.disabled = true;
+
+  try {
+    const res = await fetch("/api/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ studentName, answers, ids, startedAt })
+    });
+    const data = await res.json();
+    showResult(data);
+  } catch(e) {
+    alert("Lỗi kết nối server. Vui lòng thử lại.");
+    if (btn) btn.disabled = false;
+  }
+}
+
+function showResult(data) {
+  const { score, correct, total, passing, detail } = data;
+  const pass = score >= passing;
+  const circle = document.getElementById("score-circle");
+  circle.className = "score-circle " + (pass ? "pass" : "fail");
+  document.getElementById("score-val").textContent = score;
+  document.getElementById("result-name").textContent = studentName;
+  document.getElementById("result-badge").innerHTML = pass
+    ? '<span class="badge pass">✓ Đạt</span>'
+    : '<span class="badge fail">✗ Chưa đạt</span>';
+  const now = new Date();
+  const dSecs = Math.round((now - new Date(startedAt)) / 1000);
+  document.getElementById("result-meta").textContent =
+    `Thời gian làm: ${Math.floor(dSecs/60)}p${dSecs%60}s · ${correct}/${total} câu đúng · Nộp lúc ${now.toLocaleTimeString("vi-VN")}`;
+
+  const det = document.getElementById("result-detail");
+  det.innerHTML = "";
+  detail.forEach((d, i) => {
+    const row = document.createElement("div");
+    row.className = "result-row";
+    const qtext = questions[i]?.q || "";
+    row.innerHTML = `<span class="q-snippet">Câu ${i+1}: ${qtext.length > 55 ? qtext.slice(0,55)+"…" : qtext}</span>
+      <span class="r-mark ${d.correct ? "correct" : "wrong"}">${d.correct ? "✓ Đúng" : "✗ Sai"}</span>`;
+    det.appendChild(row);
+  });
+  goScreen("screen-result");
+}
+
+function resetQuiz() {
+  clearInterval(timerID);
+  document.getElementById("name-input").value = "";
+  loadExam().then(() => {
+    answers = []; curQ = 0; startedAt = null;
+    goScreen("screen-login");
+  });
+}
+
+function goScreen(id) {
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  window.scrollTo(0, 0);
+}
+
+// Ngăn tắt tab vô tình
+window.addEventListener("beforeunload", (e) => {
+  if (document.getElementById("screen-quiz").classList.contains("active")) {
+    e.preventDefault(); e.returnValue = "";
+  }
+});
+</script>
+</body>
+</html>

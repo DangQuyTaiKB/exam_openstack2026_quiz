@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "q": "Đơn vị cơ bản của thông tin trong máy tính là gì?",
+    "opts": ["Byte", "Bit", "Kilobyte", "Megabyte"],
+    "ans": 1
+  },
+  {
+    "id": 2,
+    "q": "Ngôn ngữ lập trình nào được dùng phổ biến nhất cho phát triển web front-end?",
+    "opts": ["Python", "Java", "JavaScript", "C++"],
+    "ans": 2
+  },
+  {
+    "id": 3,
+    "q": "RAM là viết tắt của cụm từ nào?",
+    "opts": ["Read Access Memory", "Random Access Memory", "Rapid Access Module", "Read And Modify"],
+    "ans": 1
+  },
+  {
+    "id": 4,
+    "q": "Giao thức nào được sử dụng để truyền tải trang web qua Internet?",
+    "opts": ["FTP", "SMTP", "HTTP", "SSH"],
+    "ans": 2
+  },
+  {
+    "id": 5,
+    "q": "Trong hệ nhị phân, số thập phân 10 được biểu diễn như thế nào?",
+    "opts": ["1100", "1010", "1001", "1000"],
+    "ans": 1
+  },
+  {
+    "id": 6,
+    "q": "CSS là viết tắt của?",
+    "opts": ["Creative Style Sheets", "Cascading Style Sheets", "Computer Style Sheets", "Colorful Style Sheets"],
+    "ans": 1
+  },
+  {
+    "id": 7,
+    "q": "Hệ điều hành nào sau đây là mã nguồn mở?",
+    "opts": ["Windows 11", "macOS Ventura", "Ubuntu Linux", "iOS 17"],
+    "ans": 2
+  },
+  {
+    "id": 8,
+    "q": "IP trong TCP/IP là viết tắt của?",
+    "opts": ["Internet Protocol", "Internal Process", "Input Parameter", "Index Page"],
+    "ans": 0
+  },
+  {
+    "id": 9,
+    "q": "Thuật toán nào có độ phức tạp O(n log n) trong trường hợp trung bình?",
+    "opts": ["Bubble Sort", "Insertion Sort", "Quick Sort", "Selection Sort"],
+    "ans": 2
+  },
+  {
+    "id": 10,
+    "q": "Trong lập trình hướng đối tượng, tính chất nào cho phép một lớp kế thừa từ nhiều lớp cha?",
+    "opts": ["Encapsulation", "Polymorphism", "Multiple Inheritance", "Abstraction"],
+    "ans": 2
+  }
+]

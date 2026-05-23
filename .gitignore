@@ -1,0 +1,19 @@
+node_modules/
+
+# Local exam data and submissions
+data/
+uploads/
+
+# Environment variables and local config
+.env
+.env.*
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
