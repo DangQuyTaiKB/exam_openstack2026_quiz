@@ -11,10 +11,10 @@ module.exports = {
   EXAM_DURATION_MINUTES: 60,
 
   // --- Mật khẩu admin ---
-  ADMIN_PASSWORD: "admin123", // ĐỔI MẬT KHẨU NÀY
+  ADMIN_PASSWORD: process.env.ADMIN_PASSWORD || "admin123", // ĐỔI MẬT KHẨU NÀY
 
   // --- Server ---
-  PORT: 3000,
+  PORT: process.env.PORT || 3000,
 
   // --- Kỳ thi ---
   SESSION_NAME: "Kiểm tra cuối kỳ 2024",
