@@ -1,332 +1,552 @@
 [
   {
     "id": 1,
-    "q": "OpenStack thuộc loại mô hình dịch vụ điện toán đám mây nào?",
+    "q": "OpenStack là gì?",
     "opts": [
-      "SaaS (Software as a Service)",
-      "PaaS (Platform as a Service)",
-      "IaaS (Infrastructure as a Service)",
-      "FaaS (Function as a Service)"
+      "Một hypervisor vật lý",
+      "Một nền tảng điện toán đám mây mã nguồn mở",
+      "Một hệ điều hành Linux",
+      "Một phần mềm antivirus"
     ],
-    "ans": 2
+    "ans": 1
   },
   {
     "id": 2,
-    "q": "KVM (Kernel-based Virtual Machine) hoạt động ở cấp độ nào trong hệ điều hành Linux?",
+    "q": "Dịch vụ nào chịu trách nhiệm quản lý máy ảo trong OpenStack?",
     "opts": [
-      "Application space",
-      "User space",
-      "Kernel space",
-      "Hardware layer"
+      "Neutron",
+      "Glance",
+      "Nova",
+      "Horizon"
     ],
     "ans": 2
   },
   {
     "id": 3,
-    "q": "Thành phần nào đóng vai trò như một API chung (wrapper) để quản lý nhiều loại hypervisor khác nhau như KVM, QEMU, Xen?",
+    "q": "Thành phần quản lý mạng ảo trong OpenStack là:",
     "opts": [
+      "Keystone",
       "Nova",
-      "Libvirt",
-      "Open vSwitch",
-      "Keystone"
+      "Neutron",
+      "Cinder"
     ],
-    "ans": 1
+    "ans": 2
   },
   {
     "id": 4,
-    "q": "Trong dịch vụ Nova, tiến trình nào đóng vai trò quyết định host nào sẽ được chọn để khởi tạo máy ảo mới dựa trên tài nguyên và các bộ lọc?",
+    "q": "Floating IP dùng để:",
     "opts": [
-      "nova-api",
-      "nova-compute",
-      "nova-conductor",
-      "nova-scheduler"
+      "Backup VM",
+      "Tạo VXLAN",
+      "Gán IP public truy cập VM từ bên ngoài",
+      "Đồng bộ database"
     ],
-    "ans": 3
+    "ans": 2
   },
   {
     "id": 5,
-    "q": "Trong OpenStack, khái niệm 'Flavor' được dùng để định nghĩa điều gì?",
+    "q": "Trong production OpenStack, Ceph thường được dùng để:",
     "opts": [
-      "Cấu trúc mạng ảo của hệ thống",
-      "Mẫu kích thước tài nguyên (vCPU, RAM, Disk) của máy ảo",
-      "Hệ điều hành được cài đặt trên máy ảo",
-      "Danh sách các luật tường lửa (Security Group)"
+      "Thay thế Nova",
+      "Distributed storage backend",
+      "Chạy Horizon",
+      "Quản lý token"
     ],
     "ans": 1
   },
   {
     "id": 6,
-    "q": "Trong dịch vụ định danh Keystone, khái niệm nào đại diện cho một không gian cách ly (namespace) để nhóm các tài nguyên của một khách hàng (tenant)?",
+    "q": "Kolla-Ansible triển khai các service OpenStack chủ yếu dưới dạng:",
     "opts": [
-      "Domain",
-      "User",
-      "Project (Tenant)",
-      "Role"
+      "Virtual Machine",
+      "BIOS firmware",
+      "Docker container",
+      "Windows service"
     ],
     "ans": 2
   },
   {
     "id": 7,
-    "q": "Sau khi người dùng xác thực thành công, Keystone sẽ trả về đối tượng nào để họ có quyền giao tiếp với các dịch vụ khác (Nova, Neutron, Cinder...)?",
+    "q": "File cấu hình trung tâm của Kolla-Ansible thường là:",
     "opts": [
-      "Token",
-      "SSH Private Key",
-      "SSL Certificate",
-      "Cookie"
+      "nova.conf",
+      "globals.yml",
+      "neutron.conf",
+      "horizon.conf"
     ],
-    "ans": 0
+    "ans": 1
   },
   {
     "id": 8,
-    "q": "Dịch vụ nào trong OpenStack chịu trách nhiệm cung cấp cấu trúc mạng ảo (Network, Subnet, Router, Port)?",
+    "q": "Lệnh dùng để kiểm tra môi trường trước khi deploy là:",
     "opts": [
-      "Nova",
-      "Neutron",
-      "Cinder",
-      "Glance"
+      "kolla-ansible validate",
+      "kolla-ansible prechecks",
+      "kolla-ansible verify",
+      "kolla-ansible test"
     ],
     "ans": 1
   },
   {
     "id": 9,
-    "q": "Open vSwitch (OVS) là gì?",
+    "q": "VIP trong OpenStack HA thường được quản lý bởi:",
     "opts": [
-      "Một giao thức định tuyến mạng ngang hàng",
-      "Một thiết bị switch vật lý của Cisco",
-      "Một phần mềm chuyển mạch ảo đa lớp (multilayer virtual switch)",
-      "Một dịch vụ giám sát băng thông mạng"
+      "RabbitMQ",
+      "Nova",
+      "Keepalived + HAProxy",
+      "Glance"
     ],
     "ans": 2
   },
   {
     "id": 10,
-    "q": "Dịch vụ Cinder trong OpenStack chuyên cung cấp loại lưu trữ nào?",
+    "q": "Bridge external trong OpenStack/OVS thường là:",
     "opts": [
-      "Object Storage",
-      "File Storage",
-      "Block Storage",
-      "Ephemeral Storage"
+      "br-int",
+      "br-storage",
+      "br-ex",
+      "docker0"
     ],
     "ans": 2
   },
   {
     "id": 11,
-    "q": "Tính năng nào của Cinder cho phép chụp và lưu lại trạng thái dữ liệu của ổ đĩa ảo tại một thời điểm cụ thể?",
+    "q": "Keystone là dịch vụ gì?",
     "opts": [
-      "Backup",
-      "Clone",
-      "Snapshot",
-      "Replication"
+      "Compute Service",
+      "Identity Service",
+      "Network Service",
+      "Block Storage Service"
     ],
-    "ans": 2
+    "ans": 1
   },
   {
     "id": 12,
-    "q": "Trong hệ thống Ceph Storage, tiến trình (daemon) nào chịu trách nhiệm lưu trữ dữ liệu thực tế xuống đĩa cứng vật lý và xử lý các thao tác read/write?",
+    "q": "Project trong OpenStack là:",
     "opts": [
-      "MON (Monitor)",
-      "MDS (Metadata Server)",
-      "OSD (Object Storage Daemon)",
-      "MGR (Manager)"
+      "Một token xác thực",
+      "Một endpoint API",
+      "Không gian logic chứa tài nguyên",
+      "Một image VM"
     ],
     "ans": 2
   },
   {
     "id": 13,
-    "q": "Thuật toán cốt lõi nào giúp Ceph xác định vị trí lưu trữ và phân phối dữ liệu một cách phân tán mà không cần tới bảng tra cứu tập trung (Central Lookup Table)?",
+    "q": "RBAC là viết tắt của:",
     "opts": [
-      "Paxos",
-      "Raft",
-      "CRUSH",
-      "Consistent Hashing"
+      "Rule-Based API Control",
+      "Resource Backup Access Control",
+      "Role-Based Access Control",
+      "Region-Based Authentication Control"
     ],
     "ans": 2
   },
   {
     "id": 14,
-    "q": "Trong kiến trúc OpenStack, Horizon đóng vai trò là dịch vụ gì?",
+    "q": "Role nào chỉ có quyền xem tài nguyên?",
     "opts": [
-      "Lưu trữ đối tượng (Object Storage)",
-      "Giao diện quản trị đồ họa trên nền Web (Dashboard)",
-      "Quản lý vòng đời phần cứng vật lý",
-      "Dịch vụ thu thập log hệ thống"
+      "Admin",
+      "Member",
+      "Operator",
+      "Reader"
+    ],
+    "ans": 3
+  },
+  {
+    "id": 15,
+    "q": "Lệnh kiểm tra token xác thực là:",
+    "opts": [
+      "openstack auth check",
+      "openstack token issue",
+      "openstack token show-all",
+      "openstack verify login"
     ],
     "ans": 1
   },
   {
-    "id": 15,
-    "q": "Trong môi trường OpenStack Neutron sử dụng OVS, loại bridge nào thường được cấu hình để làm cầu nối trực tiếp ra mạng vật lý bên ngoài (Provider Network / External)?",
-    "opts": [
-      "br-int",
-      "br-tun",
-      "br-ex",
-      "br-mgmt"
-    ],
-    "ans": 2
-  },
-  {
     "id": 16,
-    "q": "Trong kiến trúc OVN (Open Virtual Network), tiến trình nào chạy trên từng Compute Node để dịch các quy tắc logic thành các luồng (flows) thực tế xuống OVS?",
+    "q": "nova-compute chạy ở đâu?",
     "opts": [
-      "ovn-northd",
-      "ovn-controller",
-      "ovs-vswitchd",
-      "ovsdb-server"
+      "Controller node",
+      "Compute node",
+      "Ceph node",
+      "Horizon node"
     ],
     "ans": 1
   },
   {
     "id": 17,
-    "q": "Tính năng 'Live Migration' của máy ảo trong Nova có tác dụng chính là gì?",
+    "q": "Flavor dùng để:",
     "opts": [
-      "Di chuyển một máy ảo đang chạy từ Compute node này sang Compute node khác mà gần như không gây gián đoạn dịch vụ",
-      "Đồng bộ hóa dữ liệu của máy ảo ra môi trường Public Cloud",
-      "Khởi động lại máy ảo ở chế độ cứu hộ (Rescue Mode)",
-      "Tự động nâng cấp tài nguyên RAM và CPU cho máy ảo đang chạy"
+      "Định nghĩa tài nguyên VM",
+      "Tạo VLAN",
+      "Tạo token",
+      "Quản lý image"
     ],
     "ans": 0
   },
   {
     "id": 18,
-    "q": "Dịch vụ Glance trong OpenStack có nhiệm vụ chính là gì?",
+    "q": "Live Migration là:",
     "opts": [
-      "Theo dõi hiệu năng của các máy ảo",
-      "Quản lý, đăng ký và lưu trữ các tệp tin Image của hệ điều hành (OS Images)",
-      "Quản lý cơ sở dữ liệu quan hệ cho các dịch vụ khác",
-      "Điều phối tài nguyên lưu trữ dạng Block"
+      "Sao lưu VM",
+      "Xóa VM",
+      "Di chuyển VM không cần tắt máy",
+      "Snapshot volume"
     ],
-    "ans": 1
+    "ans": 2
   },
   {
     "id": 19,
-    "q": "Mục đích của việc sử dụng 'Floating IP' trong OpenStack là gì?",
+    "q": "Placement Service dùng để:",
     "opts": [
-      "Gán IP động (DHCP) cho các máy ảo nội bộ",
-      "Cung cấp địa chỉ IP Public tĩnh để máy ảo có thể truy cập Internet và được truy cập từ bên ngoài",
-      "Cân bằng tải lưu lượng giữa các Compute Node",
-      "Gán địa chỉ IP cho thiết bị switch vật lý trong Datacenter"
+      "Quản lý DHCP",
+      "Theo dõi và phân bổ tài nguyên compute",
+      "Chạy VXLAN",
+      "Quản lý image metadata"
     ],
     "ans": 1
   },
   {
     "id": 20,
-    "q": "Trong Linux, lệnh nào thường được sử dụng để kiểm tra xem CPU có hỗ trợ tập lệnh ảo hóa phần cứng (Intel VT-x hoặc AMD-V) để chạy KVM hiệu quả không?",
+    "q": "\"No valid host was found\" thường liên quan đến:",
     "opts": [
-      "cat /etc/os-release",
-      "lsmod | grep kvm",
-      "egrep -c '(vmx|svm)' /proc/cpuinfo",
-      "uname -r"
+      "Sai password Horizon",
+      "Thiếu tài nguyên hoặc scheduler filter",
+      "Thiếu DHCP",
+      "Token Keystone hết hạn"
     ],
-    "ans": 2
+    "ans": 1
   },
   {
     "id": 21,
-    "q": "Từ bản phát hành Stein, dịch vụ nào đã được tách ra thành một thành phần độc lập khỏi Nova để chuyên trách theo dõi Inventory tài nguyên (CPU, RAM, Disk) của toàn hệ thống?",
+    "q": "Neutron là dịch vụ:",
     "opts": [
-      "Keystone",
-      "Ironic",
-      "Placement",
-      "Gnocchi"
+      "Compute",
+      "Image",
+      "Network",
+      "Identity"
     ],
     "ans": 2
   },
   {
     "id": 22,
-    "q": "Khi tạo các mạng Overlay (như VXLAN hoặc GRE) trong Neutron, OVS sử dụng bridge chuyên dụng nào để thiết lập các đường hầm ảo (tunnel) giữa các Compute Node?",
+    "q": "Security Group tương tự:",
     "opts": [
-      "br-int",
-      "br-ex",
-      "br-tun",
-      "br-storage"
-    ],
-    "ans": 2
-  },
-  {
-    "id": 23,
-    "q": "Đâu là sự khác biệt cơ bản nhất giữa Swift và Cinder về cách thức cung cấp lưu trữ?",
-    "opts": [
-      "Cả hai đều cung cấp Block Storage nhưng Swift hỗ trợ hệ điều hành Windows",
-      "Swift cung cấp Object Storage truy cập qua REST API, Cinder cung cấp Block Storage gắn trực tiếp vào máy ảo",
-      "Cinder chuyên dùng để backup, Swift chuyên dùng để lưu trữ hệ điều hành",
-      "Swift chỉ hỗ trợ ổ cứng SSD, Cinder chỉ hỗ trợ ổ cứng HDD"
+      "Hypervisor",
+      "Firewall ảo",
+      "Database",
+      "Router vật lý"
     ],
     "ans": 1
   },
   {
-    "id": 24,
-    "q": "Trong thiết kế cụm Ceph, để đảm bảo hệ thống Monitor (MON) luôn đạt được Quorum và tránh hiện tượng 'Não chia đôi' (Split-brain), số lượng tiến trình MON phải luôn là:",
+    "id": 23,
+    "q": "Rule ICMP trong Security Group thường dùng để:",
     "opts": [
-      "Một số chẵn (Ví dụ: 2, 4, 6)",
-      "Bằng đúng số lượng OSD trong cụm",
-      "Một số lẻ (Ví dụ: 3, 5, 7)",
-      "Chỉ duy nhất một tiến trình MON"
+      "SSH",
+      "HTTP",
+      "DHCP",
+      "Ping"
     ],
-    "ans": 2
+    "ans": 3
+  },
+  {
+    "id": 24,
+    "q": "VXLAN dùng để:",
+    "opts": [
+      "Backup volume",
+      "Overlay network tunnel",
+      "Đồng bộ token",
+      "Quản lý database"
+    ],
+    "ans": 1
   },
   {
     "id": 25,
-    "q": "Trong cơ chế phân quyền của Keystone, khái niệm 'Role' dùng để làm gì?",
+    "q": "Nếu VM không nhận IP, nguyên nhân phổ biến là:",
     "opts": [
-      "Phân loại các hệ điều hành được phép chạy trong Project",
-      "Quy định dung lượng lưu trữ (Quota) của từng User",
-      "Xác định cấp độ quyền hạn (ví dụ: admin, member, reader) của người dùng trên một Project",
-      "Định tuyến gói tin giữa các mạng khác nhau"
+      "DHCP hoặc metadata agent lỗi",
+      "Horizon lỗi",
+      "RabbitMQ lỗi",
+      "Flavor quá lớn"
     ],
-    "ans": 2
+    "ans": 0
   },
   {
     "id": 26,
-    "q": "Khi tiến trình khởi tạo máy ảo bị lỗi và thất bại hoàn toàn (không thể phục hồi), máy ảo đó sẽ rơi vào trạng thái (Status) nào?",
+    "q": "Provider Network là:",
     "opts": [
-      "SHUTOFF",
-      "BUILD",
-      "ERROR",
-      "PAUSED"
+      "Network tenant tự tạo",
+      "Network map trực tiếp ra hạ tầng vật lý",
+      "Network của Ceph",
+      "Network RabbitMQ"
     ],
-    "ans": 2
+    "ans": 1
   },
   {
     "id": 27,
-    "q": "Bản chất hoạt động của 'Security Group' trong Neutron là gì?",
+    "q": "Lệnh xem danh sách Floating IP là:",
     "opts": [
-      "Là tường lửa có trạng thái (stateful firewall) được áp dụng trực tiếp tại cổng mạng (Port) của máy ảo",
-      "Là thiết bị tường lửa vật lý gắn ở tầng mạng lõi (Core Network)",
-      "Là phần mềm diệt virus được cài tự động vào trong máy ảo",
-      "Là luật định tuyến (Routing rule) áp dụng trên Router ảo"
+      "openstack floating ip list",
+      "openstack port list",
+      "openstack router list",
+      "openstack subnet list"
     ],
     "ans": 0
   },
   {
     "id": 28,
-    "q": "Mô hình OVN sử dụng hai cơ sở dữ liệu chính để quản lý trạng thái và cấu hình logic mạng. Đó là hai DB nào?",
+    "q": "Cinder là dịch vụ:",
     "opts": [
-      "SQL Server và MongoDB",
-      "Northbound DB (NB) và Southbound DB (SB)",
-      "Active DB và Standby DB",
-      "Neutron DB và Nova DB"
+      "Image Service",
+      "Block Storage Service",
+      "Network Service",
+      "Identity Service"
     ],
     "ans": 1
   },
   {
     "id": 29,
-    "q": "Tệp cấu hình định nghĩa chi tiết các thông số phần cứng của một máy ảo (Domain) do Libvirt quản lý (KVM/QEMU) được viết dưới định dạng nào?",
+    "q": "Volume trong OpenStack là:",
     "opts": [
-      "JSON",
-      "YAML",
-      "XML",
-      "INI"
+      "Router mạng",
+      "Block storage gắn cho VM",
+      "Một token",
+      "Một image VM"
+    ],
+    "ans": 1
+  },
+  {
+    "id": 30,
+    "q": "Attach volume nghĩa là:",
+    "opts": [
+      "Xóa volume",
+      "Snapshot volume",
+      "Gắn volume vào VM",
+      "Backup volume"
     ],
     "ans": 2
   },
   {
-    "id": 30,
-    "q": "Bạn muốn cấp phát thêm một ổ đĩa trống dung lượng 100GB cho một máy ảo đang chạy để cài đặt Database. Dịch vụ nào của OpenStack sẽ tiếp nhận yêu cầu và khởi tạo ổ cứng này?",
+    "id": 31,
+    "q": "Volume type dùng để:",
     "opts": [
-      "Nova",
-      "Neutron",
-      "Glance",
-      "Cinder"
+      "Chọn backend storage",
+      "Chọn user domain",
+      "Chọn hypervisor",
+      "Chọn VLAN"
     ],
-    "ans": 3
+    "ans": 0
+  },
+  {
+    "id": 32,
+    "q": "Pool \"images\" trong Ceph thường dùng cho:",
+    "opts": [
+      "Nova compute",
+      "DHCP",
+      "Glance image backend",
+      "RabbitMQ"
+    ],
+    "ans": 2
+  },
+  {
+    "id": 33,
+    "q": "Boot from Volume có ưu điểm:",
+    "opts": [
+      "Không cần compute node",
+      "VM disk nằm trên block storage",
+      "Không cần image",
+      "Không cần network"
+    ],
+    "ans": 1
+  },
+  {
+    "id": 34,
+    "q": "Nếu volume stuck \"creating\", nguyên nhân phổ biến là:",
+    "opts": [
+      "Horizon lỗi",
+      "Security Group lỗi",
+      "Ceph hoặc cinder-volume lỗi",
+      "Keystone token hết hạn"
+    ],
+    "ans": 2
+  },
+  {
+    "id": 35,
+    "q": "Glance là dịch vụ:",
+    "opts": [
+      "Compute",
+      "Image Service",
+      "Networking",
+      "Identity"
+    ],
+    "ans": 1
+  },
+  {
+    "id": 36,
+    "q": "Image trong OpenStack là:",
+    "opts": [
+      "VM đang chạy",
+      "Template hệ điều hành để tạo VM",
+      "Router mạng",
+      "Volume backup"
+    ],
+    "ans": 1
+  },
+  {
+    "id": 37,
+    "q": "Định dạng image phổ biến nhất trong OpenStack/KVM là:",
+    "opts": [
+      "exe",
+      "iso",
+      "qcow2",
+      "apk"
+    ],
+    "ans": 2
+  },
+  {
+    "id": 38,
+    "q": "vmdk thường liên quan đến:",
+    "opts": [
+      "Hyper-V",
+      "VMware",
+      "Docker",
+      "OVN"
+    ],
+    "ans": 1
+  },
+  {
+    "id": 39,
+    "q": "Metadata image dùng để:",
+    "opts": [
+      "Quản lý VXLAN",
+      "Điều khiển hành vi VM/hypervisor",
+      "Tạo token",
+      "Quản lý RabbitMQ"
+    ],
+    "ans": 1
+  },
+  {
+    "id": 40,
+    "q": "Nếu Windows image thiếu driver virtio nhưng set hw_disk_bus=virtio thì:",
+    "opts": [
+      "VM boot nhanh hơn",
+      "VM có thể không nhận disk",
+      "Ceph lỗi",
+      "Security Group lỗi"
+    ],
+    "ans": 1
+  },
+  {
+    "id": 41,
+    "q": "Cloud-init dùng để:",
+    "opts": [
+      "Quản lý database",
+      "Tự động cấu hình VM khi boot lần đầu",
+      "Quản lý OVS bridge",
+      "Tạo volume backup"
+    ],
+    "ans": 1
+  },
+  {
+    "id": 42,
+    "q": "RabbitMQ trong OpenStack chủ yếu dùng để:",
+    "opts": [
+      "Lưu image VM",
+      "Message Queue giữa các service",
+      "Tạo overlay network",
+      "Quản lý volume"
+    ],
+    "ans": 1
+  },
+  {
+    "id": 43,
+    "q": "MariaDB Galera Cluster dùng để:",
+    "opts": [
+      "Chạy hypervisor",
+      "Chạy DHCP",
+      "Database HA cho OpenStack",
+      "Chạy Ceph OSD"
+    ],
+    "ans": 2
+  },
+  {
+    "id": 44,
+    "q": "Compute node là nơi:",
+    "opts": [
+      "Chạy Horizon",
+      "Chạy VM workload",
+      "Lưu token Keystone",
+      "Chạy API Glance"
+    ],
+    "ans": 1
+  },
+  {
+    "id": 45,
+    "q": "Trong production OpenStack, vì sao cần HA gateway/network node?",
+    "opts": [
+      "Tăng RAM VM",
+      "Tăng tốc CPU",
+      "Tránh mất kết nối external khi một node lỗi",
+      "Giảm dung lượng image"
+    ],
+    "ans": 2
+  },
+  {
+    "id": 46,
+    "q": "Ceph có ưu điểm lớn vì:",
+    "opts": [
+      "Không cần network",
+      "Hỗ trợ distributed storage và HA",
+      "Chỉ dùng local disk",
+      "Không cần replication"
+    ],
+    "ans": 1
+  },
+  {
+    "id": 47,
+    "q": "Horizon là:",
+    "opts": [
+      "Hypervisor",
+      "Dashboard web quản trị OpenStack",
+      "Message Queue",
+      "Storage backend"
+    ],
+    "ans": 1
+  },
+  {
+    "id": 48,
+    "q": "openstack hypervisor list dùng để:",
+    "opts": [
+      "Xem danh sách hypervisor",
+      "Xem Floating IP",
+      "Xem volume",
+      "Xem router"
+    ],
+    "ans": 0
+  },
+  {
+    "id": 49,
+    "q": "Container Horizon thường tên là:",
+    "opts": [
+      "nova-api",
+      "neutron-server",
+      "horizon",
+      "placement-api"
+    ],
+    "ans": 2
+  },
+  {
+    "id": 50,
+    "q": "Trong production cloud, image doanh nghiệp nên:",
+    "opts": [
+      "Không cần metadata",
+      "Có hardening và versioning rõ ràng",
+      "Chỉ lưu local disk",
+      "Không cần update định kỳ"
+    ],
+    "ans": 1
   }
 ]
